@@ -1,0 +1,11 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "b4ncod4dos12",
+    "database": "projetoDS4",
+    "synchronise": true,
+    "logging": ["error"],
+    "entities": ["dist/entity/*.js"]
+}
