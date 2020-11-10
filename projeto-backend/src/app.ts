@@ -1,7 +1,5 @@
 import express from 'express';
 import cors from 'cors';
-import {createServer, Server} from 'http';
-import socketIO from 'socket.io';
 
 import localizacaoRoute from './route/localizacao.route'
 import usuarioRoute from './route/usuario.route'
@@ -10,35 +8,20 @@ import hotelRoute from './route/hotel.route'
 import reviewRoute from './route/review.route'
 
 export class App {
-    private express: express.Application;
-    private io: socketIO.Server;
+    public express: express.Application;
 
-    public server: Server;
-
-    constructor() {
+    constructor(){
         this.express = express();
 
         this.middleware();
-        this.socket();
         this.routes();
     }
 
-    private middleware(): void {
+    private middleware() {
         this.express.use(express.json());
         this.express.use(cors());
     }
-
-    private socket(): void {
-        this.server = createServer( this.express );
-        //this.io = socketIO(this.server);
-    }
-
     private routes(): void {
-        this.express.use((req, res, next) => {
-            req.io = this.io;
-            
-            next();
-        });
 
         this.express.use('/localizacoes', localizacaoRoute);
         this.express.use('/usuarios', usuarioRoute);
@@ -49,4 +32,4 @@ export class App {
 
 }
 
-export default new App();
+export default new App().express;
