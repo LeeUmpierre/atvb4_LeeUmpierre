@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: './passagens', component: PassagemComponent},
   {path: './hoteis', component: HotelComponent},
   {path: './usuarios', component: UsuarioComponent},
-  {path: '**', redirectTo: 'usuarios'}
+  {path: '**', redirectTo: 'localizacoes'}
 ];
 
 @NgModule({
